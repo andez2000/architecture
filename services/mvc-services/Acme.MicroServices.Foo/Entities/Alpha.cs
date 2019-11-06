@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Acme.MicroServices.Foo.Models
+namespace Acme.MicroServices.Foo.Entities
 {
-    public class AlphaModel
+    public class Alpha
     {
         public Guid Id { get; set; }
 
