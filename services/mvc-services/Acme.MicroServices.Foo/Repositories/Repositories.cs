@@ -1,6 +1,5 @@
 ﻿using Acme.MicroServices.Foo.Entities;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Acme.MicroServices.Foo.Repositories
 {

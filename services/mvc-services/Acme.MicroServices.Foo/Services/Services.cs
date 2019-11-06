@@ -13,8 +13,9 @@ namespace Acme.MicroServices.Foo.Services
 
         private readonly IAlphaRepository _alphaRepository;
 
-        public void DoStuff()
+        public int GetTotal()
         {
+            return _alphaRepository.GetAll().Sum(a => a.Number);
         }
 
         public AlphaModel[] GetAll()
@@ -29,7 +30,7 @@ namespace Acme.MicroServices.Foo.Services
 
     public interface IAlphaService
     {
-        public void DoStuff();
+        public int GetTotal();
 
         public AlphaModel[] GetAll();
     }
