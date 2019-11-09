@@ -4,40 +4,38 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Acme.MicroServices.Foo.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AlphaController : ControllerBase
+    public class AlphaSummaryController : ControllerBase
     {
         private readonly IAlphaService _alphaService;
         private readonly ILogger<AlphaController> _logger;
 
-        public AlphaController(ILogger<AlphaController> logger, IAlphaService alphaService)
+        public AlphaSummaryController(ILogger<AlphaController> logger, IAlphaService alphaService)
         {
             _logger = logger;
             _alphaService = alphaService;
         }
 
+        [HttpGet]
+        public IActionResult GetTotals()
+        {
+            return Ok(_alphaService.GetTotal());
+        }
+
 		[HttpGet]
-		public IEnumerable<AlphaModel> Get()
+		public IEnumerable<AlphaSummary> Get()
 		{
-			return _alphaService.GetAll();
-		}
-
-		[HttpPatch]
-		public IActionResult Update(AlphaModel request)
-		{
-			_alphaService.Update(request);
-			return Ok();
-		}
-
-		[HttpDelete]
-		public IActionResult Delete(Guid id)
-		{
-			_alphaService.Delete(id);
-			return Ok();
+			return _alphaService.GetAll().Select(a => new AlphaSummary
+			{
+				Id = a.Id,
+				Name = a.Name,
+				Description = a.Description
+			});
 		}
 	}
 }
