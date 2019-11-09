@@ -26,12 +26,24 @@ namespace Acme.MicroServices.Foo.Services
                 Name = a.Name
             }).ToArray();
         }
-    }
+
+		public void Update(AlphaModel model)
+		{
+			var alpha = _alphaRepository.Get(model.Id);
+
+			alpha.Name = model.Name;
+			alpha.Number = model.Number;
+
+			_alphaRepository.Update(alpha);
+		}
+	}
 
     public interface IAlphaService
     {
         public int GetTotal();
 
         public AlphaModel[] GetAll();
-    }
+
+		public void Update(AlphaModel model);
+	}
 }

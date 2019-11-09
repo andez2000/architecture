@@ -24,5 +24,12 @@ namespace Acme.MicroServices.Foo.Controllers
         {
             return _alphaService.GetAll();
         }
-    }
+
+		[HttpPatch]
+		public IActionResult Update(AlphaModel request)
+		{
+			_alphaService.Update(request);
+			return Ok();
+		}
+	}
 }
