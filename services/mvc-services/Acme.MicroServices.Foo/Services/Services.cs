@@ -1,5 +1,6 @@
 ﻿using Acme.MicroServices.Foo.Models;
 using Acme.MicroServices.Foo.Repositories;
+using System;
 using System.Linq;
 
 namespace Acme.MicroServices.Foo.Services
@@ -36,6 +37,11 @@ namespace Acme.MicroServices.Foo.Services
 
 			_alphaRepository.Update(alpha);
 		}
+
+		public void Delete(Guid id)
+		{
+			_alphaRepository.Delete(id);
+		}
 	}
 
     public interface IAlphaService
@@ -45,5 +51,6 @@ namespace Acme.MicroServices.Foo.Services
         public AlphaModel[] GetAll();
 
 		public void Update(AlphaModel model);
+		public void Delete(Guid id);
 	}
 }

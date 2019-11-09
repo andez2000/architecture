@@ -12,6 +12,7 @@ namespace Acme.MicroServices.Foo.Repositories
 		Alpha Get(Guid id);
 
 		void Update(Alpha alpha);
+		void Delete(Guid id);
     }
 
     public class AlphaRepository : IAlphaRepository
@@ -39,5 +40,9 @@ namespace Acme.MicroServices.Foo.Repositories
 			_alphas[index] = alpha;
 		}
 
+		public void Delete(Guid id)
+		{
+			_alphas.Where(a => a.Id == id).ToList().ForEach(a => _alphas.Remove(a));
+		}
 	}
 }
